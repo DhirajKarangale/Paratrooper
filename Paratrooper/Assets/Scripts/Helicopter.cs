@@ -55,11 +55,13 @@ public class Helicopter : MonoBehaviour
 
     private void SpawnTroop()
     {
-        if (gameObject.activeInHierarchy && gameManager && Random.value > troopsRate)
+        if (gameManager && !gameManager.isGameOver && gameObject.activeInHierarchy && Random.value > troopsRate)
         {
             if (transform.position.x > -7f && transform.position.x < 7f)
             {
-                Troop troop = gameManager.objectPooler.SpwanObject("Troop", transform.position).GetComponent<Troop>();
+                if (transform.position.x >= -2.6f && transform.position.x < 2.6f) return;
+
+                Troop troop = gameManager.objectPooler.SpwanObject("Troop", transform.position - new Vector3(0, 1.5f, 0)).GetComponent<Troop>();
                 troop.Active();
             }
         }

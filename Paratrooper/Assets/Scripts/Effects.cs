@@ -34,4 +34,15 @@ public class Effects : MonoBehaviour
         psExplosion.Play();
         psLargeMetal.Play();
     }
+
+    internal void TurretDestroy(Vector3 pos)
+    {
+        psSmoke.transform.position = pos;
+        psDestroy.transform.position = pos;
+        psSmallMetal.transform.position = pos;
+
+        psSmoke.Play();
+        psDestroy.Play();
+        psSmallMetal.Play();
+    }
 }

@@ -10,12 +10,14 @@ public class HelicopterSpawner : MonoBehaviour
     [SerializeField] internal float speed;
     [SerializeField] internal float troopsRate;
 
+    private GameManager gameManager;
     private ObjectPooler objectPooler;
 
 
     private void Start()
     {
-        objectPooler = GameManager.instance.objectPooler;
+        gameManager = GameManager.instance;
+        objectPooler = gameManager.objectPooler;
         StartCoroutine(IESpawn());
     }
 
@@ -32,6 +34,12 @@ public class HelicopterSpawner : MonoBehaviour
 
     private void Spawn()
     {
+        if(gameManager.isGameOver)
+        {
+            StopAllCoroutines();
+            return;
+        }
+
         bool isRight = Random.value > 0.5f;
         float y = Random.Range(minY, maxY);
         Vector2 stPos = new Vector2(-x, y);

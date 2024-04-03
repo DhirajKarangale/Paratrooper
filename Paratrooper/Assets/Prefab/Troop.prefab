@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7508083966360972968}
   - component: {fileID: 182377965365388718}
   - component: {fileID: 5032858367639047675}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Troop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 6646390622051881584}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6646390623849622719}
   - {fileID: 6646390622854984259}
@@ -53,7 +53,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0.1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ccb062b34c54445a13ff50b841abeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duration: 2
+  rigidBody: {fileID: 7508083966360972968}
   boxCollider: {fileID: 182377965365388718}
   objParachute: {fileID: 6646390623849622716}
 --- !u!1 &6646390622854984256
@@ -107,7 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6646390622854984259}
   - component: {fileID: 6646390622854984258}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6646390623849622719}
   - component: {fileID: 6646390623849622718}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Parachute
   m_TagString: Untagged
   m_Icon: {fileID: 0}

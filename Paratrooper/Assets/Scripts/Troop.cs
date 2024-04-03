@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Troop : MonoBehaviour
 {
+    [SerializeField] float duration;
+    [SerializeField] Rigidbody2D rigidBody;
     [SerializeField] BoxCollider2D boxCollider;
     [SerializeField] GameObject objParachute;
 
@@ -27,7 +29,7 @@ public class Troop : MonoBehaviour
             StartCoroutine(IEDisable(collider.gameObject));
         }
     }
-    
+
 
     private IEnumerator IEDisable(GameObject bullet)
     {
@@ -35,6 +37,19 @@ public class Troop : MonoBehaviour
         gameObject.SetActive(false);
         bullet.SetActive(false);
         gameManager.UpdateScore(6);
+    }
+
+    private IEnumerator IEMove(Vector3 pos)
+    {
+        float elapsedTime = 0;
+        Vector3 stPos = transform.position;
+
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector3.Lerp(stPos, pos, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
     }
 
 
@@ -45,10 +60,21 @@ public class Troop : MonoBehaviour
         boxCollider.size = new Vector2(0.2f, 0.5f);
     }
 
+
     internal void Active()
     {
         objParachute.SetActive(true);
         boxCollider.offset = new Vector2(0, 0.35f);
         boxCollider.size = new Vector2(1, 1.2f);
+    }
+
+    internal void Move(Vector3 pos, float durationOffset)
+    {
+        duration += durationOffset;
+        rigidBody.isKinematic = true;
+        rigidBody.simulated = false;
+        
+        RemoveParachute();
+        StartCoroutine(IEMove(pos));
     }
 }

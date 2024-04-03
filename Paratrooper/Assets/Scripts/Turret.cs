@@ -12,12 +12,14 @@ public class Turret : MonoBehaviour
     [SerializeField] Transform shootPoint;
     [SerializeField] float shootForce;
 
+    private GameManager gameManager;
     private ObjectPooler objectPooler;
 
 
     private void Start()
     {
-        objectPooler = GameManager.instance.objectPooler;
+        gameManager = GameManager.instance;
+        objectPooler = gameManager.objectPooler;
     }
 
     private void Update()
@@ -50,7 +52,7 @@ public class Turret : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (!gameManager.isGameOver && Input.GetButtonDown("Jump"))
         {
             Rigidbody2D bullet = objectPooler.SpwanObject("Bullet", shootPoint.position);
             bullet.AddForce(shootPoint.up * shootForce);
@@ -58,8 +60,3 @@ public class Turret : MonoBehaviour
         }
     }
 }
-
-
-// Bullets Shooting 
-// Helicopter spawning and motion
-// Paratroopers falling and Climbing
