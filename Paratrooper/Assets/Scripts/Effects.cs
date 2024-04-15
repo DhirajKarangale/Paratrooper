@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Effects : MonoBehaviour
 {
+    [Header("Effects")]
     [SerializeField] ParticleSystem psFall;
     [SerializeField] ParticleSystem psSmoke;
     [SerializeField] ParticleSystem psBlood;
@@ -9,6 +10,12 @@ public class Effects : MonoBehaviour
     [SerializeField] ParticleSystem psExplosion;
     [SerializeField] ParticleSystem psLargeMetal;
     [SerializeField] ParticleSystem psSmallMetal;
+
+    [Header("Sound")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip clipHurt;
+    [SerializeField] AudioClip clipShoot;
+    [SerializeField] AudioClip clipDestroy;
 
 
     internal void TroopDestroy(Vector3 pos)
@@ -20,6 +27,7 @@ public class Effects : MonoBehaviour
         psSmoke.Play();
         psBlood.Play();
         psSmallMetal.Play();
+        audioSource.PlayOneShot(clipHurt);
     }
 
     internal void HelicopterDestroy(Vector3 pos)
@@ -33,6 +41,7 @@ public class Effects : MonoBehaviour
         psDestroy.Play();
         psExplosion.Play();
         psLargeMetal.Play();
+        audioSource.PlayOneShot(clipDestroy);
     }
 
     internal void TurretDestroy(Vector3 pos)
@@ -44,5 +53,11 @@ public class Effects : MonoBehaviour
         psSmoke.Play();
         psDestroy.Play();
         psSmallMetal.Play();
+        audioSource.PlayOneShot(clipDestroy);
+    }
+
+    internal void Shoot()
+    {
+        audioSource.PlayOneShot(clipShoot);
     }
 }

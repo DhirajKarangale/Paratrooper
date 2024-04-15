@@ -5,8 +5,8 @@ using Unity.VisualScripting;
 public class HelicopterSpawner : MonoBehaviour
 {
     [SerializeField] float x;
-    [SerializeField] float rate;
     [SerializeField] float minY, maxY;
+    [SerializeField] internal float rate;
     [SerializeField] internal float speed;
     [SerializeField] internal float troopsRate;
 

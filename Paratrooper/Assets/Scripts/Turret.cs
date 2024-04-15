@@ -55,6 +55,7 @@ public class Turret : MonoBehaviour
         if (!gameManager.isGameOver && Input.GetButtonDown("Jump"))
         {
             Rigidbody2D bullet = objectPooler.SpwanObject("Bullet", shootPoint.position);
+            gameManager.effects.Shoot();
             bullet.AddForce(shootPoint.up * shootForce);
             StartCoroutine(IEDisable(bullet.gameObject));
         }

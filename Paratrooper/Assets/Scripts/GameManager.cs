@@ -6,6 +6,7 @@ public class GameManager : Singleton<GameManager>
     [Header("Refrences")]
     [SerializeField] GameObject objTurret;
     [SerializeField] GameObject objGameOver;
+    [SerializeField] HelicopterSpawner helicopterSpawner;
     [SerializeField] internal Effects effects;
     [SerializeField] internal ObjectPooler objectPooler;
 
@@ -40,6 +41,16 @@ public class GameManager : Singleton<GameManager>
         objGameOver.SetActive(true);
     }
 
+    private void Difficulty()
+    {
+        if (score > 0 && score % 10 == 0)
+        {
+            helicopterSpawner.speed += 0.5f;
+            helicopterSpawner.rate -= 0.8f;
+            helicopterSpawner.troopsRate -= 0.0025f;
+        }
+    }
+
 
     internal void UpdateScore(int val)
     {
@@ -52,11 +63,12 @@ public class GameManager : Singleton<GameManager>
 
         txtScore.text = $"Score: {score}";
         txtHighscore.text = $"HighScore: {highScore}";
+        Difficulty();
     }
 
     internal void GameOver()
     {
-        txtGameOverScore.text =$"Score: {score}";
+        txtGameOverScore.text = $"Score: {score}";
         txtGameOverHighscore.text = $"HighScore: {highScore}";
 
         CancelInvoke();
